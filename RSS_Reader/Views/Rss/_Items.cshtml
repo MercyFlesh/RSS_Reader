@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Item>
+
+<div data-bs-target="#feed-items" class="items-descriptions col-8" tabindex="0">
+    @if (Model is not null)
+    {
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            var item = Model.ElementAt(i);
+            <div id="item-@i" class="item border-bottom">
+                <h4><a href="@item.Link" target="_blank" style="text-decoration: none;">@item.Title</a></h4>
+                <p class="item-description">@Html.Raw(item.Description)</p>
+            </div>
+        }
+    }
+</div>
+<div id="feed-items" class="list-group col-4" style="height: 80vh; overflow-y: scroll;">
+    @if (Model is not null)
+    {
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            var item = Model.ElementAt(i);
+
+            <a class="list-group-item list-group-item-action" href="#item-@i">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">@item.Title</h5>
+                    <small>@DateTime.Parse(item.PubDate).ToString("dd.MM.yyyy")</small>
+                </div>
+            </a>
+        }
+    } 
+</div>

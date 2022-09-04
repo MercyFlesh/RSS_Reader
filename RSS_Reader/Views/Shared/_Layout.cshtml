@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/RSS_Reader.styles.css" />
+</head>
+<body>
+    <header>
+        @if (IsSectionDefined("Header"))
+        {
+            @RenderSection("Header", false)
+        }
+        else
+        {
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-area="" asp-controller="Rss" asp-action="Index">RssReader</a>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        @if (IsSectionDefined("NavBar"))
+                        {
+                            @RenderSection("NavBar", false);
+                        }
+                    </div>
+                </div>
+            </nav>
+        }  
+    </header>
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+
+    <footer>
+        @if (IsSectionDefined("Footer"))
+        {
+            @RenderSection("Footer", false)
+        }
+        else
+        {
+            <div class="border-top footer text-muted fixed-bottom pt-10 pb-3 d-flex justify-content-center">
+                &copy; Powered by GovnoCode 
+            </div>
+        }
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

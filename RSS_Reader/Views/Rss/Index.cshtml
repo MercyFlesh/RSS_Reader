@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "RssReader";
+}
+@model Rss
+
+<div class="row flex-xl-nowrap feeds">
+    <section class="col-12 col-md-3 col-xl-2 bd-sidebar feeds-nav bg-secondary">
+        <form class="addFeed mt-3" method="post" action="~/Rss/AddFeed">
+            <input type="url" class="form-control mb-1" id="addFeddLink" placeholder="Link">
+            <input type="number" class="form-control mb-1" id="addUpdateTimeMs" placeholder="Update time Ms">
+            <button type="submit" class="btn btn-primary mb-1">Add</button>
+        </form>
+        <div id="feeds-titles" class="list-group mt-3">
+            <a class="list-group-item list-group-item-action bg-secondary" href="#" style="border: none; color: #fff;">
+                <div class="d-flex w-100 align-items-center">
+                    @if (Model?.Channel?.Image is not null)
+                    {
+                        <img src="@Model.Channel.Image.Url" 
+                            class="rounded-circle" style="width: 64px;" alt="Avatar"/>
+                    }
+                    <h4 class="mb-1">@Model?.Channel?.Title</h4>
+                </div>
+            </a>
+        </div>
+    </section>
+    <section class="bd-content row col-9 mt-3 feed">
+        @{await Html.RenderPartialAsync("_Items", Model?.Channel?.Items);}
+    </section>
+</div>
+

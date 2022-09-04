@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+	<feeds>
+		<feed>
+			<url>https://habr.com/rss/interesting/</url>
+			<updateTimeMs>60000</updateTimeMs>
+		</feed>
+	</feeds>
+	<proxy>
+		<uri>http://203.13.32.228:80</uri>
+		<user>proxyUser</user>
+		<pass>12345</pass>
+	</proxy>
+</configuration>
